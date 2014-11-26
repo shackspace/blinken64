@@ -26,44 +26,48 @@
 
 
 
-# define PORT_COL1 PORTA
-# define PORT_COL2 PORTB
-# define PORT_COL3 PORTB
-# define PORT_COL4 PORTD
-# define PORT_COL5 PORTB
-# define PORT_COL6 PORTD
-# define PORT_COL7 PORTD
-# define PORT_COL8 PORTD
-# define COL1      (1 << 0)
-# define COL2      (1 << 5)
-# define COL3      (1 << 4)
-# define COL4      (1 << 4)
-# define COL5      (1 << 2)
-# define COL6      (1 << 3)
-# define COL7      (1 << 1)
-# define COL8      (1 << 0)
 # define PORT_ROW1 PORTD
-# define PORT_ROW2 PORTA
-# define PORT_ROW3 PORTB
-# define PORT_ROW4 PORTD
-# define PORT_ROW5 PORTB
-# define PORT_ROW6 PORTB
-# define PORT_ROW7 PORTB
-# define PORT_ROW8 PORTB
-# define ROW1      (1 << 5)
+# define ROW1      (1 << 2)
+# define PORT_ROW2 PORTD
 # define ROW2      (1 << 1)
-# define ROW3      (1 << 0)
-# define ROW4      (1 << 2)
-# define ROW5      (1 << 7)
-# define ROW6      (1 << 1)
-# define ROW7      (1 << 6)
-# define ROW8      (1 << 3)
-# define A_OUTPUTS 0b00000011 // XX XX XX XX XX XX R2 C1  
-# define B_OUTPUTS 0b11111111 // R5 R7 C2 C3 R8 C5 R6 R3
-# define D_OUTPUTS 0b00111111 // XX XX R1 C4 C6 R4 C7 C8
-# define A_INIT    0b00000010
-# define B_INIT    0b11001011 // R->HIGH, C->LOW
-# define D_INIT    0b00100100
+# define PORT_ROW3 PORTD
+# define ROW3      (1 << 4)
+# define PORT_ROW4 PORTD
+# define ROW4      (1 << 0)
+# define PORT_ROW5 PORTB
+# define ROW5      (1 << 3)
+# define PORT_ROW6 PORTD
+# define ROW6      (1 << 5)
+# define PORT_ROW7 PORTB
+# define ROW7      (1 << 5)
+# define PORT_ROW8 PORTB
+# define ROW8      (1 << 0)
+
+
+# define PORT_COL1 PORTB
+# define COL1      (1 << 4)
+# define PORT_COL2 PORTA
+# define COL2      (1 << 1)
+# define PORT_COL3 PORTA
+# define COL3      (1 << 0)
+# define PORT_COL4 PORTB
+# define COL4      (1 << 1)
+# define PORT_COL5 PORTD
+# define COL5      (1 << 3)
+# define PORT_COL6 PORTB
+# define COL6      (1 << 2)
+# define PORT_COL7 PORTB
+# define COL7      (1 << 6)
+# define PORT_COL8 PORTB
+# define COL8      (1 << 7)
+
+
+# define A_OUTPUTS 0b00000011 // xxx xxx xxx xxx xxx xxx !R2 !R3
+# define B_OUTPUTS 0b11111111 // !R8 !R7  C7 !R1  C5 !R6 !R4  C8  
+# define D_OUTPUTS 0b00111111 // xxx xxx  C6  C3 !R5  C1  C2  C4
+# define A_INIT    0b00000011
+# define B_INIT    0b11010110 // R->HIGH, C->LOW für ausschalten
+# define D_INIT    0b00001000
 
 
 // define outputs 

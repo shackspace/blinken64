@@ -20,16 +20,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-#PROGRAMMER = -c avrispmkII -P usb
+#PROGRAMMER = -cstk500v2 -P/dev/ttyACM3 -B 4
 PROGRAMMER = -c usbasp -P usb
 
 PROGRAM = blinken
 
-DEVICE	= attiny2313
+DEVICE	= attiny4313
 F_CPU	= 4000000
 
 # Fuses: internal oscillator 4 MHz, no clockdiv, BOD 1.8V, EEsave, spi enabled, reset _enabled_
-FUSES	= -U lfuse:w:0xE2:m -U hfuse:w:0x9D:m
+FUSES	= -U lfuse:w:0xE4:m -U hfuse:w:0x9D:m
 
 # Tune the lines below only if you know what you are doing:
 AVRDUDE = avrdude $(PROGRAMMER) -p $(DEVICE)
@@ -53,7 +53,7 @@ slave:
 
 # DISABLES ISP!! and enables reset pin as I/O
 disable_reset_because_i_know_what_i_do:
-	$(AVRDUDE) -U lfuse:w:0xE2:m -U hfuse:w:0x9C:m
+	$(AVRDUDE) -U lfuse:w:0xE4:m -U hfuse:w:0x9C:m
 
 
 all:	$(PROGRAM).hex $(PROGRAM).lss
@@ -105,13 +105,13 @@ reset:
 
 # convert text.txt to eeprom.hex
 textconvert: 
-	../tools/textconv -i text.txt -o eeprom.bin
-	objcopy -Ibinary -Oihex eeprom.bin eeprom.hex
-	avr-size eeprom.hex
+	/home/muzy/blinken64++/tools/textconv -i /home/muzy/blinken64++/text.txt -o /home/muzy/blinken64++/eeprom.bin > /dev/null
+	objcopy -Ibinary -Oihex /home/muzy/blinken64++/eeprom.bin /home/muzy/blinken64++/eeprom.hex
+	avr-size /home/muzy/blinken64++/eeprom.hex
 	
 # convert font.pgm to font.h
 fontconvert:
-	../tools/fontconv ../tools/font/font.pgm font.h
+	tools/fontconv tools/font/font.pgm font.h
 
 # overwrite eeprom w/ 0
 clear_eeprom:

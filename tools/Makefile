@@ -23,7 +23,7 @@
 all: fontconv textconv
 	
 fontconv:
-	gcc fontconv.c -o fontconv
+	gcc -g fontconv.c -o fontconv
 
 textconv:
 	gcc textconv.c -o textconv

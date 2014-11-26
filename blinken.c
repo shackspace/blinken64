@@ -115,7 +115,7 @@ volatile uint8_t display_on = ~0; // display on/off
 // counters / timers (clock dividers for many things)
 
 // timer 1ms
-#define CTR_DELAY_MS_MAX    (20)      // upper val for 1ms clock
+#define CTR_DELAY_MS_MAX    (40)      // upper val for 1ms clock
 volatile uint16_t ctr_delay = 0;      // counts up w/ 20kHz
 
 // counter for delay_ms
@@ -159,7 +159,6 @@ volatile uint8_t bitmask = 0; // so we only have to shift once per iteration
  *   - receive data
  */
 ISR(TIMER1_COMPA_vect) {
-
 
     ctr_fast_delay++;           // for delay() function
 
@@ -263,23 +262,23 @@ ISR(TIMER1_COMPA_vect) {
             row++;
             if (row > 7) { row = 0; }
             val = buff[row];
-            if ( val & 0x01 ) { PORT_COL1 |= COL1; } 
-            if ( val & 0x02 ) { PORT_COL2 |= COL2; } 
-            if ( val & 0x04 ) { PORT_COL3 |= COL3; } 
-            if ( val & 0x08 ) { PORT_COL4 |= COL4; } 
-            if ( val & 0x10 ) { PORT_COL5 |= COL5; } 
-            if ( val & 0x20 ) { PORT_COL6 |= COL6; } 
-            if ( val & 0x40 ) { PORT_COL7 |= COL7; } 
-            if ( val & 0x80 ) { PORT_COL8 |= COL8; } 
+            if ( val & 0x01 ) { PORT_COL8 &= ~COL8; } 
+            if ( val & 0x02 ) { PORT_COL7 &= ~COL7; } 
+            if ( val & 0x04 ) { PORT_COL6 &= ~COL6; } 
+            if ( val & 0x08 ) { PORT_COL5 &= ~COL5; } 
+            if ( val & 0x10 ) { PORT_COL4 &= ~COL4; } 
+            if ( val & 0x20 ) { PORT_COL3 &= ~COL3; } 
+            if ( val & 0x40 ) { PORT_COL2 &= ~COL2; } 
+            if ( val & 0x80 ) { PORT_COL1 &= ~COL1; } 
             switch (row) {                           
-                case 0 : PORT_ROW1 &= ~ROW1; break;  
-                case 1 : PORT_ROW2 &= ~ROW2; break;  
-                case 2 : PORT_ROW3 &= ~ROW3; break;  
-                case 3 : PORT_ROW4 &= ~ROW4; break;  
-                case 4 : PORT_ROW5 &= ~ROW5; break;  
-                case 5 : PORT_ROW6 &= ~ROW6; break;  
-                case 6 : PORT_ROW7 &= ~ROW7; break;  
-                case 7 : PORT_ROW8 &= ~ROW8; break;  
+                case 0 : PORT_ROW1 |= ROW1; break;  
+                case 1 : PORT_ROW2 |= ROW2; break;  
+                case 2 : PORT_ROW3 |= ROW3; break;  
+                case 3 : PORT_ROW4 |= ROW4; break;  
+                case 4 : PORT_ROW5 |= ROW5; break;  
+                case 5 : PORT_ROW6 |= ROW6; break;  
+                case 6 : PORT_ROW7 |= ROW7; break;  
+                case 7 : PORT_ROW8 |= ROW8; break;  
             }
 
         }
@@ -304,7 +303,7 @@ void main(void) {
     ACSR |= (1 << ACD);         // disable analog comparator
 
     initComm;
-    initDisplay;
+    initDisplay
 
     sei();                      // enable interrupts
 
