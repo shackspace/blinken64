@@ -104,13 +104,13 @@ reset:
 	
 
 # convert text.txt to eeprom.hex
-textconvert: 
+textconvert: ../tools/textconv
 	../tools/textconv -i text.txt -o eeprom.bin > /dev/null
 	objcopy -Ibinary -Oihex eeprom.bin eeprom.hex
 	avr-size eeprom.hex
 	
 # convert font.pgm to font.h
-fontconvert:
+fontconvert: ../tools/fontconv
 	../tools/fontconv ../tools/font/font.pgm font.h
 
 # overwrite eeprom w/ 0
@@ -127,3 +127,10 @@ read_eeprom:
 
 calibrate:
 	$(AVRDUDE) -O
+
+# compile the external tools
+../tools/textconv: ../tools/textconv.c
+	$(MAKE) -C ../tools/ textconv
+
+../tools/fontconv: ../tools/fontconv.c
+	$(MAKE) -C ../tools/ fontconv
