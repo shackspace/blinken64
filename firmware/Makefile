@@ -105,13 +105,13 @@ reset:
 
 # convert text.txt to eeprom.hex
 textconvert: 
-	/home/muzy/blinken64++/tools/textconv -i /home/muzy/blinken64++/text.txt -o /home/muzy/blinken64++/eeprom.bin > /dev/null
-	objcopy -Ibinary -Oihex /home/muzy/blinken64++/eeprom.bin /home/muzy/blinken64++/eeprom.hex
-	avr-size /home/muzy/blinken64++/eeprom.hex
+	../tools/textconv -i text.txt -o eeprom.bin > /dev/null
+	objcopy -Ibinary -Oihex eeprom.bin eeprom.hex
+	avr-size eeprom.hex
 	
 # convert font.pgm to font.h
 fontconvert:
-	tools/fontconv tools/font/font.pgm font.h
+	../tools/fontconv ../tools/font/font.pgm font.h
 
 # overwrite eeprom w/ 0
 clear_eeprom:
