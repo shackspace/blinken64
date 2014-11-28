@@ -45,7 +45,8 @@ def do_smth_external():
 		out.close
 		#subprocess.call(['./external.sh'])
 		#cmd = ['/home/muzy/blinken64++/tools/textconv','-i','/home/muzy/blinken64++/text.txt','-o','/home/muzy/blinken64++/eeprom.bin']
-		cmd = ['bash', 'external.sh']
+		#cmd = ['bash', 'external.sh']
+		cmd = ['make', 'clear_eeprom', 'textconvert', 'eeflash']
 		proc = subprocess.Popen(cmd)
 		#proc.wait()
 		#time.sleep(5)
