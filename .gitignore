@@ -1,29 +1,37 @@
 # Object files
-*.o
-*.ko
-*.obj
-*.elf
+firmware/*.o
+firmware/*.ko
+firmware/*.obj
+firmware/*.elf
 
 # Precompiled Headers
-*.gch
-*.pch
+firmware/*.gch
+firmware/*.pch
 
 # Libraries
-*.lib
-*.a
-*.la
-*.lo
+firmware/*.lib
+firmware/*.a
+firmware/*.la
+firmware/*.lo
 
 # Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+firmware/*.dll
+firmware/*.so
+firmware/*.so.*
+firmware/*.dylib
 
 # Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+firmware/*.exe
+firmware/*.out
+firmware/*.app
+firmware/*.i*86
+firmware/*.x86_64
+firmware/*.hex
+
+firmware/*.lss
+firmware/*.bin
+
+
+# tools/
+tools/fontconv
+tools/textconv
