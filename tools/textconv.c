@@ -361,7 +361,7 @@ void readFile () {
     
         
         // ascii, utf8 compatible
-        if (ic < 128) { 
+        if (ic < 128 || ic == 135) { 
             inb[pos++] = ic;
             
         // utf8
