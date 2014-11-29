@@ -71,7 +71,7 @@ clean:
 	rm -f $(PROGRAM).hex $(PROGRAM).elf $(PROGRAM).lss $(PROGRAM).o
 
 
-$(PROGRAM).elf: $(OBJECTS)
+$(PROGRAM).elf: font.h $(OBJECTS)
 	$(COMPILE) -o $(PROGRAM).elf $(OBJECTS)
 
 $(PROGRAM).hex: $(PROGRAM).elf
@@ -110,7 +110,12 @@ textconvert: ../tools/textconv
 	avr-size eeprom.hex
 	
 # convert font.pgm to font.h
-fontconvert: ../tools/fontconv
+fontconvert: font.h
+
+../tools/font/font.pgm: ../tools/font/font.xcf
+	convert ../tools/font/font.xcf -depth 8 -compress none ../tools/font/font.pgm
+
+font.h: ../tools/font/font.pgm ../tools/fontconv
 	../tools/fontconv ../tools/font/font.pgm font.h
 
 # overwrite eeprom w/ 0

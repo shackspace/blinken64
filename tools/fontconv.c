@@ -37,7 +37,9 @@ void readPicture (char* fileName) {
         do {
             fscanf(f,"%c",&c);
         } while (c != '\n');  // skip line
-    }
+    } else {
+		ungetc(c, f); // in the line was no comment. So we push back the char c
+	}
     
     fscanf(f,"%d %d", &width, &height);
 
